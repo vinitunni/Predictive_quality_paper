@@ -1,0 +1,1129 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass elsarticle
+\begin_preamble
+% specify here the journal
+\journal{Example: Nuclear Physics B}
+
+% use this if you need line numbers
+%\usepackage{lineno}
+\end_preamble
+\use_default_options false
+\begin_modules
+theorems-std
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 0
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle headings
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This is a template LyX file for articles to be submitted to journals of
+ the Elsevier publishing company.
+ For general infos see 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://wiki.lyx.org/Examples/Elsevier
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The Journal is specified in the document preamble! For the right document
+ class options to get the page format for your journal, have a look at the
+ elsarticle documentation: 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.ctan.org/get/macros/latex/contrib/elsarticle/elsdoc.pdf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Predictive Quality Control
+\begin_inset Flex Titlenotemark
+status open
+
+\begin_layout Plain Layout
+t1,t2
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\size normal
+With 
+\series bold
+\size default
+
+\backslash
+tnoteref
+\series default
+\size normal
+ you refer to the title footnotes.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title footnote
+This document is a collaborative effort.
+\begin_inset Argument
+status collapsed
+
+\begin_layout Plain Layout
+t1
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The short title is the label you refer to in the title.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+There are two author styles possible:
+\end_layout
+
+\begin_layout Plain Layout
+1.
+ Authors side by side
+\begin_inset space \hfill{}
+\end_inset
+
+2.
+ Authors below each other
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Author
+\begin_inset space \hfill{}
+\end_inset
+
+Author
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Email
+\begin_inset space \hfill{}
+\end_inset
+
+Email
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Author
+\begin_inset space \hfill{}
+\end_inset
+
+Address
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Email
+\begin_inset space \hfill{}
+\end_inset
+
+Author
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Addresses
+\begin_inset space \hfill{}
+\end_inset
+
+Email
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+-------
+\begin_inset space \hfill{}
+\end_inset
+
+Address
+\begin_inset space \hfill{}
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+C.V.
+\begin_inset space ~
+\end_inset
+
+Radhakrishnan
+\begin_inset Flex Authormark
+status collapsed
+
+\begin_layout Plain Layout
+fn1
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CorAuthormark
+status open
+
+\begin_layout Plain Layout
+cor1
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CorAuthormark
+status collapsed
+
+\begin_layout Plain Layout
+cor2
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+rvt
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The short title is the reference of the address.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Email
+cvr@river-valley.com
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+At least one Email address is required.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+K.
+\begin_inset space ~
+\end_inset
+
+Bazargan
+\begin_inset Flex Authormark
+status open
+
+\begin_layout Plain Layout
+fn2
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+rvt,focal
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\size normal
+With 
+\series bold
+\size default
+
+\backslash
+fnref
+\series default
+\size normal
+ and you refer to the author footnotes.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Email
+http://www.elsevier.com
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+url
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+When the short title is 
+\begin_inset Quotes eld
+\end_inset
+
+url
+\begin_inset Quotes erd
+\end_inset
+
+, the email becomes an Internet address.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author footnote
+This is the specimen author footnote.
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+fn1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author footnote
+Another author footnote, but a little more longer.
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+fn2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Corresponding author
+Corresponding author
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+cor1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Corresponding author
+Principal corresponding author
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+cor2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Address
+River Valley Technologies, SJP Building, Cotton Hills, Trivandrum, Kerala,
+ India 695014
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+rvt
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The short title is the label you refer to in the authors.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Address
+River Valley Technologies, 9, Browns Court, Kennford, Exeter, United Kingdom
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+focal
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This is an example of the second author style:
+\end_layout
+
+\begin_layout Author
+C.V.
+\begin_inset space ~
+\end_inset
+
+Radhakrishnan
+\end_layout
+
+\begin_layout Email
+cvr@river-valley.com
+\end_layout
+
+\begin_layout Address
+River Valley Technologies, SJP Building, Cotton Hills, Trivandrum, Kerala,
+ India 695014
+\end_layout
+
+\begin_layout Author
+K.
+\begin_inset space ~
+\end_inset
+
+Bazargan
+\end_layout
+
+\begin_layout Email
+http://www.elsevier.com
+\begin_inset Argument
+status collapsed
+
+\begin_layout Plain Layout
+url
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Address
+River Valley Technologies, 9, Browns Court, Kennford, Exeter, United Kingdom
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+Abstract, should normally be not longer than 200 words.
+\end_layout
+
+\begin_layout Keywords
+quadruple exiton 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+sep
+\end_layout
+
+\end_inset
+
+ polariton 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+sep
+\end_layout
+
+\end_inset
+
+ WGM 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+PACS
+\end_layout
+
+\end_inset
+
+ 71.35.-y 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+sep
+\end_layout
+
+\end_inset
+
+ 71.35.Lk 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+sep
+\end_layout
+
+\end_inset
+
+ 71.36.+c 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+MSC[2008]
+\end_layout
+
+\end_inset
+
+23-557
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Keywords must be separated by 
+\series bold
+
+\backslash
+sep
+\series default
+.
+ 
+\series bold
+
+\backslash
+PACS
+\series default
+ and 
+\series bold
+
+\backslash
+MSC
+\series default
+ are optional classifications.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Use here the command 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+linenumbers 
+\end_layout
+
+\end_inset
+
+ and enable the package 
+\series bold
+lineno
+\series default
+ in the preamble if you need line numbers.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+How is quality measured in present time?
+\end_layout
+
+\begin_layout Standard
+Present day quality measurements are done using various metrological tools
+ which quantify various shapes and/or form features of the part.
+ These features are given their individual limits by the designer which
+ help a metrologist in determining whether a part that has just been manufacture
+d is fit to be deemed a good part or not.
+ However, most of these tools are completely external equipments which need
+ to be explicitly used over the part(s) to see the results.
+ This usually calls for extra man-power and reduced throughput.
+ So what manufacturers end up doing is that they keep an inspection frequency
+ for non critical parts where quality checks on these parts are made at
+ regular intervals until one sees an anomaly.
+ How this anomaly is responded to again depends on what feature we are measuring.
+\end_layout
+
+\begin_layout Standard
+The main problem with such a way of measurement is that :-
+\end_layout
+
+\begin_layout Enumerate
+We have to make a compromise between the throughput and inspection interval.
+\end_layout
+
+\begin_layout Enumerate
+As the quality measurement is isolated from part manufacturing, you can’t
+ detect a bad part unless it has already been manufactured.
+\end_layout
+
+\begin_layout Subsection
+How do we propose to measure it?
+\end_layout
+
+\begin_layout Standard
+The main gist of the ideology we have applied is that, when a part is being
+ made, the information of each cut made by the machine is reflected in some
+ real-time aspect of the machine.
+ It could be noise, power, vibration, loads, etc.
+ So what we do is, we record these variables (in our case, power) real-time
+ using appropriate tools and find a correlation between these readings and
+ the quality of the part manufactured.
+ This correlation can be tightened depending on the kind of accuracy one
+ is looking for.
+ It also has an advantage over the conventional approach in certain key
+ aspects such as:-
+\end_layout
+
+\begin_layout Enumerate
+The computational time is significantly less once a correlation model has
+ been made.
+ Also, buying computational time is cheaper than wasting producing time.
+\end_layout
+
+\begin_layout Enumerate
+The feedback we get is near to real time and we could infact get early warnings
+ as the part is being made.
+\end_layout
+
+\begin_layout Enumerate
+The kind of investment needed for this is much lesser compared to buying
+ precise instruments which, other than being pretty expensive, usually have
+ only a single functionality.
+\end_layout
+
+\begin_layout Section
+Methodology
+\end_layout
+
+\begin_layout Subsection
+Getting Quality data
+\end_layout
+
+\begin_layout Standard
+As we need to correlate between power readings during a producing cycle
+ and quality, we are essentially trying to create a model or create a procedure
+ to generate a model which would take the power readings as input and give
+ the quality as output.
+ Thus, we needed some input quality data for a training set.
+\end_layout
+
+\begin_layout Standard
+For this, we monitored the Ra values of a part, which underwent turning
+ operation, at regular intervals (once in 25 parts for first 500 cycles
+ and once in every 10 parts from there on) for 1030 parts.
+ These measurements were made at two different faces and three different
+ locations in each face.
+ We observed a downward trend in the Ra values for the first 300 parts after
+ which they were more or less constant (no particular trend) till part 3000
+ after which they again rose up and went outside the specification limit.
+\end_layout
+
+\begin_layout Standard
+So we decided to use the trend evident in the first 300 parts for our model
+ creation and verification.
+ We created a 2 degree polynomial fit for the first three hundred parts
+ using 12 readings as out control points.
+\begin_inset Note Comment
+status collapsed
+
+\begin_layout Plain Layout
+INSERT FIGURE AND POLYFIT STATS.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now this sample of 300 points was used as our quality data sample which
+ would be used for training and verification.
+\end_layout
+
+\begin_layout Subsection
+Detect Cycles
+\end_layout
+
+\begin_layout Standard
+For input of the model we decided to use power readings.
+ The reason for this is BLEEAARRGGH{
+\begin_inset Note Comment
+status collapsed
+
+\begin_layout Plain Layout
+INSERT REASON FOR SELECTING POWER
+\end_layout
+
+\end_inset
+
+}.
+ As we plan to make here an autonomous correlation model, we need to be
+ able to correctly identify the start and end times of a production cycle.
+ In relatively newer machines, this data can be obtained via the controller.
+ However, the number of machines which are not capable of that are quite
+ large.
+ So we need to come up with a method to let the machine identify a cycle
+ and record its start and end time.
+ We use a simple pattern matching approach here.
+ We are going to analyze the power readings we get as a stream of data and
+ in it look for recognisable patterns which would indicate whether and where
+ a cycle occurred.
+ So to start, we need a known producing cycle which we can use as a template
+ for comparisons.
+ Once we decide this template we use an algorithm called 
+\series bold
+Dynamic Time Warping
+\series default
+ (DTW).
+\end_layout
+
+\begin_layout Subsubsection
+Dynamic Time warping
+\end_layout
+
+\begin_layout Standard
+BLLEEEAAAARRRRGGGHHH
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+INSERT EXPLANATION AND FIGURES HERE.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Extracting input from power consumption pattern
+\end_layout
+
+\begin_layout Standard
+Now we have the start and end times for 300 producing cycles and we can
+ use this data to get power consumption patterns for each individual part
+ and use it as necessary.
+ However, we can't use these patterns directly as inputs for any machine
+ llearning algorithm as it has many inherent problems.
+ The main reason being that small time offsets in the time series data could
+ throw off the result by a large amount.
+ So we basically needed to process our power pattern to extract more stable
+ information from it.
+ However in the process of making it stable, we also have to make sure that
+ we don’t lose the individuality of the pattern as we depend on this individual
+ character for our quality reading.
+ We resolved this using two methods:-
+\end_layout
+
+\begin_layout Enumerate
+Scalar extractions from pattern.
+\end_layout
+
+\begin_layout Enumerate
+Cycle splitting.
+\end_layout
+
+\begin_layout Subsubsection
+Scalar extractions from splitting
+\end_layout
+
+\begin_layout Standard
+Here we extract from our cycle a set of scalars which are stable and do
+ not get affected due to small changes like minor time scaling, peaks,etc.
+ These scalars could be mean, standard deviation, DTW distance, median,
+ mode, amplitude, etc.
+ However, as pointed out earlier, using these scalars alone would render
+ many cycles to be same as we are wasting a lot of information.
+ So we use, not one, but a combination of these scalars as now we get more
+ options of variability thus giving us our desired result of stable and
+ unique inputs.
+\end_layout
+
+\begin_layout Subsubsection
+Cycle splitting
+\end_layout
+
+\begin_layout Standard
+This is a much more important process and increases the effectiveness of
+ scalar extraction.
+ What we essentially do cut the cycle into a number of parts using different
+ methods (which will be discussed later) and apply the scalar extraction
+ for each segment.
+ So now we increase our number of inputs and also increase the individuality
+ of each input in a stable way.
+ 
+\end_layout
+
+\begin_layout Standard
+Much more importantly, when we later analyze our results, we can actually
+ pinpoint which segments of the cycle are primarily responsible for the
+ quality parameter being measured (in our case, Ra).
+ This kind of information can prove to be really useful as now we can know
+ what part of the cycle is primarily responsible for which quality parameter.
+ This can in turn help us detecting tool damages when we observe a deviation
+ in certain quality parameter.
+ Splitting the cycle gives us one more important advantage.
+ Now we can calculate the quality metric of a cycle by including one split
+ at a time, into our input set, sequentially.
+ This can be really helpful in predicting parameter qualities before the
+ machining is over and thus can help us in taking corrective action.
+\end_layout
+
+\begin_layout Standard
+We primarily employed four different methods to split cycle.
+ They were:-
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Uniform splitting
+\series default
+: As the name suggests, we split the cycle into equally sized sections.
+ The number of parts would depend on how much accuracy we want and how much
+ computation cost we can afford.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Forward feedback splitting
+\series default
+: This is a process in which we make a cut by splitting a section into two
+ equal halves and decide whether we keep that cut by checking if the amount
+ of improvement we get is significant enough.
+ It is slightly biased to create more cuts in the beginning of the cycle
+ as we move on to the former section after a cut has been made and move
+ to the next section only if no more cuts can be made in the former one.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Reverse feedback splitting
+\series default
+: This is almost like the Forward Feedback Splitting but instead of biasing
+ cuts to the start, this one biases cuts to the end.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Phase dependent cuts
+\series default
+: These are cuts which signify a change in process in the machining.
+ Theoretically, these should be the most optimum cuts as they point towards
+ specific process.
+ However, finding them out autonomously can be tricky if wanted for all
+ situations thus these cuts have to be entered manually.
+\end_layout
+
+\begin_layout Subsection
+Model Selection
+\end_layout
+
+\begin_layout Standard
+There are a plethora
+\begin_inset Note Comment
+status collapsed
+
+\begin_layout Plain Layout
+CHECK IF THERE ACTUALLY ARE A PLETHORA OF METHODS
+\end_layout
+
+\end_inset
+
+ of machine learning alg
+\end_layout
+
+\begin_layout Section
+\start_of_appendix
+Appendix name
+\end_layout
+
+\begin_layout Standard
+Appendix, only when needed.
+\end_layout
+
+\begin_layout Section*
+-----------------
+\end_layout
+
+\begin_layout Standard
+You can use either BibTeX:
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+The following bibliography styles are allowed: 
+\family sans
+elsarticle-harv
+\family default
+, 
+\family sans
+elsarticle-num-names
+\family default
+, or 
+\family sans
+elsarticle-num
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "../examples/biblioExample"
+options "bibtotoc,elsarticle-harv"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+---------------------
+\end_layout
+
+\begin_layout Standard
+\noindent
+Or plain bibliography:
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+Frank Mittelbach and Michel Goossens: 
+\emph on
+The LaTeX Companion Second Edition.
+
+\emph default
+ Addison-Wesley, 2004.
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring References
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+Scott Pakin.
+ The comprehensive LaTeX symbol list, 2005.
+\end_layout
+
+\end_body
+\end_document
