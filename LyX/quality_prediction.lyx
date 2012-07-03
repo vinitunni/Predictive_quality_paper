@@ -798,6 +798,12 @@ Methodology
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Getting-Quality-data"
+
+\end_inset
+
 Getting Quality data
 \end_layout
 
@@ -818,6 +824,16 @@ For this, we monitored the Ra values of a part, which underwent turning
  We observed a downward trend in the Ra values for the first 300 parts after
  which they were more or less constant (no particular trend) till part 3000
  after which they again rose up and went outside the specification limit.
+\begin_inset Note Comment
+status collapsed
+
+\begin_layout Plain Layout
+Should graphs of all six paramaters be drawn?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -848,19 +864,17 @@ Detect Cycles
 
 \begin_layout Standard
 For input of the model we decided to use power readings.
- The reason for this is BLEEAARRGGH{
-\begin_inset Note Comment
-status collapsed
-
-\begin_layout Plain Layout
-INSERT REASON FOR SELECTING POWER
+ We decided to go with power readings as one would expect a direct correlation
+ between energy consumed and material removed.
+ Also, it depends very little on parts of the machine which are not responsible
+ for cutting (eg.
+ housing) and thus we can make our system more flexible for varioua machines.
+ Also, power readings can be easily obtained using conventional power meters.
 \end_layout
 
-\end_inset
-
-}.
- As we plan to make here an autonomous correlation model, we need to be
- able to correctly identify the start and end times of a production cycle.
+\begin_layout Standard
+As we plan to make an autonomous correlation model, we need to be able to
+ correctly identify the start and end times of a production cycle.
  In relatively newer machines, this data can be obtained via the controller.
  However, the number of machines which are not capable of that are quite
  large.
@@ -880,21 +894,44 @@ Dynamic Time Warping
 \end_layout
 
 \begin_layout Subsubsection
-Dynamic Time warping
+Dynamic Time Warping
 \end_layout
 
 \begin_layout Standard
-BLLEEEAAAARRRRGGGHHH
+Dynamic time warping is a method to compute the similarity between two sequences.
+ To compare these two sequences, one can 
+\emph on
+warp 
+\emph default
+(stretch/compress) the sequences non-linearly.
+ Originally used as a tool to detect speech patterns in 
+\emph on
+Autonomous speech recognition, 
+\emph default
+DTW is now used in many applications which need to compare one sequence
+ to another.
+ One can limit the amount of warping and thus ensure that realistic results
+ are obtained.
 \begin_inset Note Comment
-status open
+status collapsed
 
 \begin_layout Plain Layout
-INSERT EXPLANATION AND FIGURES HERE.
+INSERT A MATCHED FIGURE.
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The reason why it is appropriate for us to use is that it gives us a very
+ convenient method to compare two sequences and assign a distance between
+ them.
+ It's robust nature, which comes as a result of the warping allowed, lets
+ us enter data with slight offsets along time, delayed peaks, noise, etc
+ and obtain a good distance measure which can be effectively used to distinguish
+ between a cycle and a non cycle.
 \end_layout
 
 \begin_layout Subsection
@@ -972,7 +1009,7 @@ Much more importantly, when we later analyze our results, we can actually
 \end_layout
 
 \begin_layout Standard
-We primarily employed four different methods to split cycle.
+We primarily employed four different methods to split cycles.
  They were:-
 \end_layout
 
@@ -1023,6 +1060,12 @@ Phase dependent cuts
  situations thus these cuts have to be entered manually.
 \end_layout
 
+\begin_layout Standard
+Now, after splitting the cycle appropriately and using scalar extraction
+ for each split, we have a bunch of variables for a cycle which we will
+ later use to get a wider set of data.
+\end_layout
+
 \begin_layout Subsection
 Model Selection
 \end_layout
@@ -1038,7 +1081,391 @@ CHECK IF THERE ACTUALLY ARE A PLETHORA OF METHODS
 
 \end_inset
 
- of machine learning alg
+ of machine learning algorithms which we could use to establish a relation
+ between our input and output.
+ We decided to try the very simple models and thus decided to use 
+\emph on
+Polynomial Regression.
+
+\emph default
+ However, as our number of variables were bound to be high, we decided to
+ keep the model complexity to a minimum and thus decided to go forward with
+ 
+\emph on
+Regularised Polynomial Regression.
+\end_layout
+
+\begin_layout Subsubsection
+Regularised Regression
+\end_layout
+
+\begin_layout Standard
+Say we try to create a linear relation between input variables
+\begin_inset Formula $x_{1},x_{2},x_{3}....,x_{n}$
+\end_inset
+
+and output variable 
+\begin_inset Formula $y.$
+\end_inset
+
+As it is linear, we can assume our equation to be
+\begin_inset Formula 
+\begin{equation}
+y=a_{0+}a_{1}x_{1}+a_{2}x_{2}+a_{3}x_{3}.......+a_{n}x_{n}\label{eq:regul 1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where 
+\begin_inset Formula $a_{1},a_{2},a_{3}.......a_{n}$
+\end_inset
+
+ are the coefficients which we have to find.
+ 
+\end_layout
+
+\begin_layout Standard
+Let us define input variable 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+ as 
+\begin_inset Formula 
+\begin{equation}
+\mathbf{X_{i}=}(x_{1,}^{i}x_{2}^{i},x_{3}^{i},......,x_{n}^{i})\label{eq:regul 2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\mathbf{A}=(a_{1},a_{2},a_{3},.....,a_{n})\label{eq:regul 3}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $x_{j}^{i}$
+\end_inset
+
+ is the 
+\begin_inset Formula $i^{th}$
+\end_inset
+
+ instance of the 
+\begin_inset Formula $j^{th}$
+\end_inset
+
+ variable.
+ Thus, we get
+\begin_inset Formula 
+\begin{equation}
+y_{i}=a_{0+}a_{1}x_{1}^{i}+a_{2}x_{2}^{i}+a_{3}x_{3}^{i}.......+a_{n}x_{n}^{i}\label{eq:regul 4}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, say we have the 
+\begin_inset Formula $p$
+\end_inset
+
+ values of 
+\begin_inset Formula $\mathbf{X}_{i}$
+\end_inset
+
+and its corresponding output which we denote by 
+\begin_inset Formula $\mathbf{Y}_{i}$
+\end_inset
+
+.
+ So to find the best approximation of 
+\begin_inset Formula $\mathbf{A}$
+\end_inset
+
+, we minimize the difference between 
+\begin_inset Formula $\mathbf{Y}_{i}$
+\end_inset
+
+and 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+.
+ Let our final coefficients' set be 
+\begin_inset Formula $\mathbf{A}_{LS}$
+\end_inset
+
+.
+ Using least square method, we get
+\begin_inset Formula 
+\begin{equation}
+\mathbf{A_{LS}}=\arg\min_{\mathbf{A}}(\sum_{i=1}^{p}(y_{i}-\mathbf{Y_{i}})^{2})\label{eq:regul 5}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+which can be re-written as 
+\begin_inset Formula 
+\begin{equation}
+\mathbf{A_{LS}=\arg\min}(\sum_{i=1}^{p}(\mathbf{A}^{T}\mathbf{X_{i}}-\mathbf{Y_{i}})^{2})\label{eq:regul 6}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus as a result of linear regression, we finally get
+\begin_inset Formula 
+\begin{equation}
+y=\mathbf{A_{LS}^{T}X}\label{eq:regul 7}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+when 
+\begin_inset Formula $x_{j}$
+\end_inset
+
+ are polynomial forms of each other, this is called polynomial regression.
+\end_layout
+
+\begin_layout Standard
+However, when the number of variables are high, i:e, when 
+\begin_inset Formula $n$
+\end_inset
+
+ is large, we tend to get highly complex models with high values of 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ which tend to overfit 
+\begin_inset Formula $y$
+\end_inset
+
+ as a function of 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+.
+ To remedy this, we include a regularization parameter 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, such that, 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\begin{equation}
+\mathbf{A_{LS}=\arg\min}(\sum_{i=1}^{p}(\mathbf{A}^{T}\mathbf{X_{i}}-\mathbf{Y_{i}})^{2}+\lambda\sum_{j=1}^{n}a_{j}^{2})\label{eq:regul 8}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus, now we can control, via 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, how complex a system we want.
+ Too high a 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ gives us an overfit solution while too low a 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ gives us an underfit one.
+\end_layout
+
+\begin_layout Subsection
+Model Creation
+\end_layout
+
+\begin_layout Standard
+To implement 
+\emph on
+Regularised Polynomial Regression, 
+\emph default
+we first need to use our present variable set (which we got after extracting
+ scalars from split sections of a cycle) to form polynomial variables.
+ Firstly we divide our 300 cycles into two sets, a 
+\emph on
+training set
+\emph default
+ and a 
+\emph on
+testing set
+\emph default
+.
+ each cycle is assigned to one of these sets randomly and the ratio between
+ the number of elements in the two sets can be decided by us.
+ we chose a 1:1 ratio.
+ Now, in the training set, for each variable (scalar from a split section),
+ we have 150 other instances of the same corresponding to 150 cycles.
+ This gives us a vector of that corresponding variable.This way we have a
+ vector corresponding to all the variables.
+ These vectors will be used to create the polynomial variables which will
+ eventually be used as inputs into the 
+\emph on
+Regularised Linear Regression.
+ 
+\emph default
+This we do in two ways:-
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Orthogonal polynomials- 
+\series default
+We create new vectors which are orthonormal to each of the vector of variables
+ we have.
+ The degree of these orthogonal variables were varied to see which would
+ yield reasonable results.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Mixed polynomials-
+\series default
+ Here we create new vectors using the old variable vectors (denoted as 
+\begin_inset Formula $x_{1},x_{2},x_{3}....,x_{n}$
+\end_inset
+
+) which can be shown asllll
+\begin_inset Formula 
+\begin{equation}
+x_{new}(i_{1},i_{2},i_{3},.....i_{n})=\prod_{j=1}^{n}x_{j}^{i_{j}};\label{eq:mixed_poly_1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+i_{1},i_{2},i_{3}....i_{n}=0,1,2,3,4.....;\label{eq:mixed_poly_2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\sum_{j=1}^{n}i_{j}<=p;\label{eq:mixed_poly_3}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where 
+\begin_inset Formula $p$
+\end_inset
+
+ is the maximum degree which we vary to get optimum results.
+ As expected, we get more number of variables using this method instead
+ of the orthogonal polynomials one.
+ However, it helps us know if there are any meaningful interactions within
+ the variables.
+\end_layout
+
+\begin_layout Standard
+Now that we have our input vectors' set created, we just a 
+\emph on
+Regularised Linear Regression 
+\emph default
+to get a list of possible relations between our input quality.
+ In the next section we discuss how we select the right parameters from
+ this given list.
+\end_layout
+
+\begin_layout Subsection
+Parameter comparison and selection
+\end_layout
+
+\begin_layout Standard
+The output of the 
+\emph on
+regularised polynomial regression 
+\emph default
+is a list of solutions.
+ Each solution contains a collection of coefficients which we use for a
+ weighted summation of our newly calculated variable vectors.
+ To compare between these various solutions, we use them and predict quality
+ parameter values for our test set and then we compare these predicted values
+ against our polynomial fit values (from 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Getting-Quality-data"
+
+\end_inset
+
+ ) and find out the 
+\emph on
+root mean square error(RMSE), 
+\emph default
+where we assume that the polynomial fit values are the true values.
+ We use this 
+\emph on
+RMSE 
+\emph default
+as a metric to compare between the solutions and pick the solution with
+ minimum 
+\emph on
+RMSE.
 \end_layout
 
 \begin_layout Section
