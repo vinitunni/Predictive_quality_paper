@@ -5,7 +5,7 @@
 \textclass elsarticle
 \begin_preamble
 % specify here the journal
-\journal{Example: Nuclear Physics B}
+\journal{}
 
 % use this if you need line numbers
 %\usepackage{lineno}
@@ -34,6 +34,7 @@ theorems-std
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement !tph
 \paperfontsize default
 \spacing single
 \use_hyperref false
@@ -55,8 +56,8 @@ theorems-std
 \end_index
 \secnumdepth 3
 \tocdepth 3
-\paragraph_separation indent
-\paragraph_indentation default
+\paragraph_separation skip
+\defskip smallskip
 \quotes_language english
 \papercolumns 1
 \papersides 2
@@ -72,7 +73,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 This is a template LyX file for articles to be submitted to journals of
@@ -98,7 +99,7 @@ http://wiki.lyx.org/Examples/Elsevier
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 The Journal is specified in the document preamble! For the right document
@@ -124,16 +125,6 @@ http://www.ctan.org/get/macros/latex/contrib/elsarticle/elsdoc.pdf
 
 \begin_layout Title
 Predictive Quality Control
-\begin_inset Flex Titlenotemark
-status open
-
-\begin_layout Plain Layout
-t1,t2
-\end_layout
-
-\end_inset
-
-
 \begin_inset Note Note
 status collapsed
 
@@ -149,126 +140,6 @@ tnoteref
 \series default
 \size normal
  you refer to the title footnotes.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Title footnote
-This document is a collaborative effort.
-\begin_inset Argument
-status collapsed
-
-\begin_layout Plain Layout
-t1
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-The short title is the label you refer to in the title.
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-There are two author styles possible:
-\end_layout
-
-\begin_layout Plain Layout
-1.
- Authors side by side
-\begin_inset space \hfill{}
-\end_inset
-
-2.
- Authors below each other
-\begin_inset space \hfill{}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Author
-\begin_inset space \hfill{}
-\end_inset
-
-Author
-\begin_inset space \hfill{}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Email
-\begin_inset space \hfill{}
-\end_inset
-
-Email
-\begin_inset space \hfill{}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Author
-\begin_inset space \hfill{}
-\end_inset
-
-Address
-\begin_inset space \hfill{}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Email
-\begin_inset space \hfill{}
-\end_inset
-
-Author
-\begin_inset space \hfill{}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Addresses
-\begin_inset space \hfill{}
-\end_inset
-
-Email
-\begin_inset space \hfill{}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
--------
-\begin_inset space \hfill{}
-\end_inset
-
-Address
-\begin_inset space \hfill{}
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -523,7 +394,7 @@ focal
 
 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 This is an example of the second author style:
@@ -579,6 +450,50 @@ River Valley Technologies, 9, Browns Court, Kennford, Exeter, United Kingdom
 
 \begin_layout Abstract
 Abstract, should normally be not longer than 200 words.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ All work and no play makes jack a dull boy.
+ 
 \end_layout
 
 \begin_layout Keywords
@@ -662,7 +577,7 @@ MSC[2008]
 
 23-557
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Keywords must be separated by 
@@ -694,7 +609,7 @@ MSC
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Use here the command 
@@ -798,12 +713,6 @@ Methodology
 \end_layout
 
 \begin_layout Subsection
-\begin_inset CommandInset label
-LatexCommand label
-name "sub:Getting-Quality-data"
-
-\end_inset
-
 Getting Quality data
 \end_layout
 
@@ -822,7 +731,7 @@ For this, we monitored the Ra values of a part, which underwent turning
  These measurements were made at two different faces and three different
  locations in each face.
  We observed a downward trend in the Ra values for the first 300 parts after
- which they were more or less constant (no particular trend) till part 3000
+ which they were more or less constant (no particular trend) till part 1000
  after which they again rose up and went outside the specification limit.
 \begin_inset Note Comment
 status collapsed
@@ -840,12 +749,149 @@ Should graphs of all six paramaters be drawn?
 So we decided to use the trend evident in the first 300 parts for our model
  creation and verification.
  We created a 2 degree polynomial fit for the first three hundred parts
- using 12 readings as out control points.
+ using 12 readings as our control points.
 \begin_inset Note Comment
-status collapsed
+status open
 
 \begin_layout Plain Layout
 INSERT FIGURE AND POLYFIT STATS.
+\end_layout
+
+\end_inset
+
+ The equation turns out to be 
+\begin_inset Formula 
+\begin{equation}
+y\approx3.35664-0.00324170.x+0.000006684611.x^{2}\label{eq:polyfit_1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where, 
+\begin_inset Formula $y$
+\end_inset
+
+ is the Ra value and 
+\begin_inset Formula $x$
+\end_inset
+
+ is the part number.
+ We see a maximum error of 
+\begin_inset Formula $0.0833\mu m$
+\end_inset
+
+ in the fit.
+ For figure, see Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Polynomial-fit-of Ra"
+
+\end_inset
+
+ for the curve and Fig.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Residuals-of-polynomial_ra"
+
+\end_inset
+
+ for the residuals' curve.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/poly_fit_Ra.eps
+	display false
+	width 14cm
+	height 8cm
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Polynomial fit of Ra values
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Polynomial-fit-of Ra"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/poly_fit_residual.eps
+	display false
+	width 14cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Residuals of polynomial fit for Ra values
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Residuals-of-polynomial_ra"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -913,7 +959,7 @@ DTW is now used in many applications which need to compare one sequence
  One can limit the amount of warping and thus ensure that realistic results
  are obtained.
 \begin_inset Note Comment
-status collapsed
+status open
 
 \begin_layout Plain Layout
 INSERT A MATCHED FIGURE.
@@ -925,13 +971,68 @@ INSERT A MATCHED FIGURE.
 \end_layout
 
 \begin_layout Standard
-The reason why it is appropriate for us to use is that it gives us a very
- convenient method to compare two sequences and assign a distance between
- them.
- It's robust nature, which comes as a result of the warping allowed, lets
- us enter data with slight offsets along time, delayed peaks, noise, etc
- and obtain a good distance measure which can be effectively used to distinguish
- between a cycle and a non cycle.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/dtw_match.eps
+	display false
+	width 14cm
+	height 11cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Mapping of two time streams using DTW
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dtw fig"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As we can see in Fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:dtw fig"
+
+\end_inset
+
+, even if we have a time shift and small variations in data, the DTW algorithm
+ maps significant features appropriately.
+ This robustness is a result of the warping along time direction allowed.
+ One can also limit the amount of warping permissible so that we can ensure
+ that only physically possible cases are deemed similar.
+ The distance between two sequences being compared is found has sum of distances
+ (euclidean, manhattan, etc) between these mapped points.
 \end_layout
 
 \begin_layout Subsection
@@ -939,6 +1040,8 @@ Extracting input from power consumption pattern
 \end_layout
 
 \begin_layout Standard
+\noindent
+\align center
 Now we have the start and end times for 300 producing cycles and we can
  use this data to get power consumption patterns for each individual part
  and use it as necessary.
@@ -1011,6 +1114,16 @@ Much more importantly, when we later analyze our results, we can actually
 \begin_layout Standard
 We primarily employed four different methods to split cycles.
  They were:-
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Insert figures
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -1020,8 +1133,52 @@ Uniform splitting
 \series default
 : As the name suggests, we split the cycle into equally sized sections.
  The number of parts would depend on how much accuracy we want and how much
- computation cost we can afford.
- 
+ computation cost we can afford (Fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Uniform-splitting"
+
+\end_inset
+
+).
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/uniform_split.eps
+	display false
+	width 14cm
+	height 8cm
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Uniform splitting (5 sections)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Uniform-splitting"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -1034,8 +1191,59 @@ Forward feedback splitting
  of improvement we get is significant enough.
  It is slightly biased to create more cuts in the beginning of the cycle
  as we move on to the former section after a cut has been made and move
- to the next section only if no more cuts can be made in the former one.
+ to the next section only if no more cuts can be made in the former one
+ (Fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Forward-feedback-splitting"
+
+\end_inset
+
+).
  
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/forward_split.eps
+	display false
+	width 14cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Forward feedback splitting
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Forward-feedback-splitting"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -1044,20 +1252,120 @@ Forward feedback splitting
 Reverse feedback splitting
 \series default
 : This is almost like the Forward Feedback Splitting but instead of biasing
- cuts to the start, this one biases cuts to the end.
+ cuts to the start, this one biases cuts to the end (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Reverse-Feedback-splitting"
+
+\end_inset
+
+).
  
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/reverse_split.eps
+	display false
+	width 14cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Reverse Feedback splitting
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Reverse-Feedback-splitting"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
 
 \series bold
-Phase dependent cuts
+Phase dependent splits
 \series default
 : These are cuts which signify a change in process in the machining.
  Theoretically, these should be the most optimum cuts as they point towards
  specific process.
  However, finding them out autonomously can be tricky if wanted for all
- situations thus these cuts have to be entered manually.
+ situations thus these cuts have to be entered manually (Fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Phase-dependent-split"
+
+\end_inset
+
+).
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename Images/manual_split.eps
+	display false
+	width 14cm
+	height 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Phase dependent split
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Phase-dependent-split"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1358,6 +1666,16 @@ We create new vectors which are orthonormal to each of the vector of variables
  we have.
  The degree of these orthogonal variables were varied to see which would
  yield reasonable results.
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+ADD ORTHOGONAL POLYNOMIAL EQUATION IF NEEDED
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -1466,6 +1784,14 @@ as a metric to compare between the solutions and pick the solution with
  minimum 
 \emph on
 RMSE.
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Section
