@@ -6,10 +6,16 @@
 \pagestyle{headings}
 \setlength{\parskip}{\smallskipamount}
 \setlength{\parindent}{0pt}
+\usepackage{array}
 \usepackage{verbatim}
 \usepackage{graphicx}
 
 \makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 % specify here the journal
 \journal{}
@@ -149,7 +155,7 @@ usually have only a single functionality.
 \section{Methodology}
 
 
-\subsection{Getting Quality data}
+\subsection{\label{sub:Getting-Quality-data}Getting Quality data}
 
 As we need to correlate between power readings during a producing
 cycle and quality, we are essentially trying to create a model or
@@ -158,16 +164,30 @@ readings as input and give the quality as output. Thus, we needed
 some input quality data for a training set.
 
 For this, we monitored the Ra values of a part, which underwent turning
-operation, at regular intervals (once in 25 parts for first 500 cycles
-and once in every 10 parts from there on) for 1030 parts. These measurements
-were made at two different faces and three different locations in
-each face. We observed a downward trend in the Ra values for the first
-300 parts after which they were more or less constant (no particular
-trend) till part 1000 after which they again rose up and went outside
-the specification limit.%
+operation using a new tool insert, at regular intervals (once in 25
+parts for first 500 cycles and once in every 10 parts from there on)
+for 1030 parts. These measurements were made at two different faces
+and three different locations in each face. We observed a downward
+trend in the Ra values for the first 300 parts after which they were
+more or less constant without any particular trend (save for an anomalous
+jump at partt 500) till part 1000 after which they again rose up and
+went outside the specification limit (see Fig \ref{fig:Quality-trend}).%
 \begin{comment}
-Should graphs of all six paramaters be drawn?
+Insert graph. Metion new tool.
 \end{comment}
+
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/qual_trend}
+\par\end{centering}
+
+\noindent \begin{centering}
+\caption{Quality trend\label{fig:Quality-trend}}
+
+\par\end{centering}
+
+\end{figure}
 
 
 So we decided to use the trend evident in the first 300 parts for
@@ -188,22 +208,14 @@ maximum error of $0.0833\mu m$ in the fit. For figure, see Fig.\ref{fig:Polynomi
 for the curve and Fig.\ref{fig:Residuals-of-polynomial_ra} for the
 residuals' curve.
 
-\begin{figure}[!tph]
-\noindent \begin{centering}
-\includegraphics[clip,width=14cm,height=8cm]{Images/poly_fit_Ra}
-\par\end{centering}
-
-\noindent \centering{}\caption{Polynomial fit of Ra values\label{fig:Polynomial-fit-of Ra}}
+\begin{figure}
+\noindent \centering{}\includegraphics[clip,width=14cm,height=8cm]{Images/poly_fit_Ra}\caption{Polynomial fit of Ra values\label{fig:Polynomial-fit-of Ra}}
 \end{figure}
 
 
-\begin{figure}[!tph]
+\begin{figure}
 \noindent \begin{centering}
-\includegraphics[width=14cm,height=8cm]{Images/poly_fit_residual}
-\par\end{centering}
-
-\noindent \begin{centering}
-\caption{Residuals of polynomial fit for Ra values\label{fig:Residuals-of-polynomial_ra}}
+\includegraphics[width=14cm,height=8cm]{Images/poly_fit_residual}\caption{Residuals of polynomial fit for Ra values\label{fig:Residuals-of-polynomial_ra}}
 
 \par\end{centering}
 
@@ -211,7 +223,7 @@ residuals' curve.
 
 
 Now this sample of 300 points was used as our quality data sample
-which would be used for training and verification.
+which would be used for creating the model and verifying the same.
 
 
 \subsection{Detect Cycles}
@@ -252,13 +264,11 @@ INSERT A MATCHED FIGURE.
 \end{comment}
 
 
-\begin{figure}[!tph]
+\begin{figure}
 \noindent \begin{centering}
-\includegraphics[width=14cm,height=11cm]{Images/dtw_match}
+\includegraphics[width=14cm,height=11cm]{Images/dtw_match}\caption{Mapping of two time streams using DTW\label{fig:dtw fig}}
+
 \par\end{centering}
-
-\caption{Mapping of two time streams using DTW\label{fig:dtw fig}}
-
 
 \end{figure}
 
@@ -275,19 +285,19 @@ points.
 
 \subsection{Extracting input from power consumption pattern}
 
-\noindent \begin{center}
-Now we have the start and end times for 300 producing cycles and we
-can use this data to get power consumption patterns for each individual
-part and use it as necessary. However, we can't use these patterns
-directly as inputs for any machine llearning algorithm as it has many
-inherent problems. The main reason being that small time offsets in
-the time series data could throw off the result by a large amount.
-So we basically needed to process our power pattern to extract more
-stable information from it. However in the process of making it stable,
-we also have to make sure that we don\textquoteright{}t lose the individuality
-of the pattern as we depend on this individual character for our quality
+\noindent Now we have the start and end times for 300 producing cycles
+and we can use this data to get power consumption patterns for each
+individual part and use it as necessary. However, we can't use these
+patterns directly as inputs for any machine learning algorithm as
+it has many inherent problems. The main reason being that small time
+offsets in the time series data could throw off the result by a large
+amount. So we basically needed to process our power pattern to extract
+more stable information from it. By stable, we mainly mean that we
+must get same information if we shift a cycle by a small amount (say
+1 sec). However in the process of making it stable, we also have to
+make sure that we don\textquoteright{}t lose the individuality of
+the pattern as we depend on this individual character for our quality
 reading. We resolved this using two methods:-
-\par\end{center}
 \begin{enumerate}
 \item Scalar extractions from pattern.
 \item Cycle splitting.
@@ -302,17 +312,25 @@ median, mode, amplitude, etc. However, as pointed out earlier, using
 these scalars alone would render many cycles to be same as we are
 wasting a lot of information. So we use, not one, but a combination
 of these scalars as now we get more options of variability thus giving
-us our desired result of stable and unique inputs.
+us our desired result of stable and unique inputs. Here, we used only
+two of these functions:-
+\begin{enumerate}
+\item Mean
+\item Standard deviation
+\end{enumerate}
 
-
-\subsubsection{Cycle splitting}
+\subsubsection{\label{sub:Cycle-splitting}Cycle splitting}
 
 This is a much more important process and increases the effectiveness
 of scalar extraction. What we essentially do cut the cycle into a
 number of parts using different methods (which will be discussed later)
 and apply the scalar extraction for each segment. So now we increase
 our number of inputs and also increase the individuality of each input
-in a stable way. 
+in a stable way. The combination of various scalars for all splits
+of a cycle represent a particular cycle and all of them are used to
+get a final quality parameter (in our case, Ra) for each cycle. These
+\emph{predicted quality metrics }can be compared against our \emph{experimental
+quality metric }and we can get error associated with each part.
 
 Much more importantly, when we later analyze our results, we can actually
 pinpoint which segments of the cycle are primarily responsible for
@@ -338,18 +356,25 @@ Insert figures
 into equally sized sections. The number of parts would depend on how
 much accuracy we want and how much computation cost we can afford
 (Fig \ref{fig:Uniform-splitting}).
-\begin{figure}[!tph]
+\begin{figure}
 \noindent \centering{}\includegraphics[width=14cm,height=8cm]{Images/uniform_split}\caption{Uniform splitting (5 sections)\label{fig:Uniform-splitting}}
 \end{figure}
 
-\item \textbf{Forward feedback splitting}: This is a process in which we
-make a cut by splitting a section into two equal halves and decide
-whether we keep that cut by checking if the amount of improvement
-we get is significant enough. It is slightly biased to create more
-cuts in the beginning of the cycle as we move on to the former section
-after a cut has been made and move to the next section only if no
-more cuts can be made in the former one (Fig \ref{fig:Forward-feedback-splitting}).
-\begin{figure}[!tph]
+\item \textbf{Forward feedback splitting}: In this, we first assume the
+entire cycle to be a single section and run our algorithm (which is
+explained in \ref{sub:Model-Selection} and \ref{sub:Model-Creation})
+to select a model. Then we find the RMSE of the best available solution
+for the test set. Now we split the cycle into two equal halves and
+again run the algorithm and get a new RMSE. If the relative drop in
+RMSE is higher than a threshold and the timespans of newly created
+splits is longer than a user-defined limit, we retain the split and
+move to the first half which we split and continue comparing and splitting
+it further. However, if the improvement is not significant enough,
+we move on to the next available section and continue till we are
+done with all the sections. It is slightly biased to create more cuts
+in the beginning of the cycle as we approach the limits of numerical
+accuracy of the model after the first few cuts (Fig \ref{fig:Forward-feedback-splitting}).
+\begin{figure}
 \noindent \begin{centering}
 \includegraphics[width=14cm,height=8cm]{Images/forward_split}
 \par\end{centering}
@@ -359,8 +384,11 @@ more cuts can be made in the former one (Fig \ref{fig:Forward-feedback-splitting
 
 \item \textbf{Reverse feedback splitting}: This is almost like the Forward
 Feedback Splitting but instead of biasing cuts to the start, this
-one biases cuts to the end (\ref{fig:Reverse-Feedback-splitting}).
-\begin{figure}[!tph]
+one biases cuts to the end as one moves to the latter half after a
+succesful split has been made and moves to preceding sections in case
+of unsuccesful (which are either very short or don't give significant
+improvemetn in RMSE) splits (\ref{fig:Reverse-Feedback-splitting}).
+\begin{figure}
 \noindent \begin{centering}
 \includegraphics[width=14cm,height=8cm]{Images/reverse_split}
 \par\end{centering}
@@ -373,7 +401,7 @@ in process in the machining. Theoretically, these should be the most
 optimum cuts as they point towards specific process. However, finding
 them out autonomously can be tricky if wanted for all situations thus
 these cuts have to be entered manually (Fig \ref{fig:Phase-dependent-split}).
-\begin{figure}[!tph]
+\begin{figure}
 \noindent \begin{centering}
 \includegraphics[width=14cm,height=8cm]{Images/manual_split}
 \par\end{centering}
@@ -387,7 +415,7 @@ for each split, we have a bunch of variables for a cycle which we
 will later use to get a wider set of data.
 
 
-\subsection{Model Selection}
+\subsection{\label{sub:Model-Selection}Model Selection}
 
 There are a plethora%
 \begin{comment}
@@ -472,7 +500,7 @@ want. Too high a $\lambda$ gives us an overfit solution while too
 low a $\lambda$ gives us an underfit one.
 
 
-\subsection{Model Creation}
+\subsection{\label{sub:Model-Creation}Model Creation}
 
 To implement \emph{Regularised Polynomial Regression, }we first need
 to use our present variable set (which we got after extracting scalars
@@ -522,13 +550,14 @@ As expected, we get more number of variables using this method instead
 of the orthogonal polynomials one. However, it helps us know if there
 are any meaningful interactions within the variables.
 
-Now that we have our input vectors' set created, we just a \emph{Regularised
+Now that we have our input vectors' set created, we just use \emph{Regularised
 Linear Regression }to get a list of possible relations between our
 input quality. In the next section we discuss how we select the right
 parameters from this given list.
 
 
-\subsection{Parameter comparison and selection}
+\subsection{\label{sub:Parameter-comparison-andselection}Parameter comparison
+and selection}
 
 The output of the \emph{regularised polynomial regression }is a list
 of solutions. Each solution contains a collection of coefficients
@@ -539,10 +568,809 @@ these predicted values against our polynomial fit values (from \ref{sub:Getting-
 ) and find out the \emph{root mean square error(RMSE), }where we assume
 that the polynomial fit values are the true values. We use this \emph{RMSE
 }as a metric to compare between the solutions and pick the solution
-with minimum \emph{RMSE.}
+with minimum \emph{RMSE. }
 
 
-\section{Results}
+\section{Results and Conclusion}
+
+In this section we will show the results we obtained for various cases
+by changing the degree of our polynomial variable, the method of polynomial
+creation (see \ref{sub:Model-Creation}) and mode of splitting (see
+\ref{sub:Cycle-splitting}) .
+
+
+\subsection{Uniform Splitting}
+
+Like explained in \ref{sub:Cycle-splitting}, we split each detected
+cycle into equal sized sections before running our algorithms. Here
+we use a table to denote the performance characteristics of a table
+which would help us take a decision about how good/bad a method is.
+A table denotes to a method which splits a cycle into a fixed number
+of equal-sized segments and uses a particular method for polynomial
+variable generation. The first column shows the maximum degree used
+for polynomial variable formation. The second number shows the degree
+of freedom of the model which in our case is the number of variables
+with non-zero coefficients. The third and fourth columns show the
+\emph{root mean square error (RMSE)} of the best solution available
+for that degree (see \ref{sub:Parameter-comparison-andselection})
+for the test set and training set respectively.Finally, the last two
+columns denote the maximum error for of the best solution for both
+the test set and the training set respectively.%
+\begin{comment}
+Explain Tables
+\end{comment}
+
+
+
+\subsubsection{One section}
+
+As the name suggests, here the entire cycle is a single section. Thus
+the cycle without splits would look like Fig \ref{fig:Single-section-uniform}.
+
+\begin{figure}
+\noindent \centering{}\includegraphics[width=14cm,height=8cm,keepaspectratio]{Images/uniform_split_1_section}\caption{Uniform split single section,\label{fig:Single-section-uniform}}
+\end{figure}
+
+
+The results have been summarised in Table \ref{tab:Single-section-uniform-ortho}
+for orthonormal variables and in Table \ref{tab:Single-section-uniform-mixed}
+for mixed polynomial variable.
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 8 & 0.0990 & 0.0986 & 0.3566 & 0.3472\tabularnewline
+\hline 
+\hline 
+3 & 12 & 0.0986 & 0.0983 & 0.3467 & 0.3430\tabularnewline
+\hline 
+\hline 
+4 & 15 & 0.0997 & 0.0953 & 0.3002 & 0.3392\tabularnewline
+\hline 
+\hline 
+5 & 19 & 0.0957 & 0.0929 & 0.2809 & 0.3437\tabularnewline
+\hline 
+\end{tabular}\caption{Single section uniform splitting, orthonormal polynomial variables\label{tab:Single-section-uniform-ortho}}
+
+\par\end{centering}
+
+\end{table}
+
+
+\begin{table}
+\noindent \centering{}%
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 8 & 0.0975 & 0.1007 & 0.3416 & 0.3480\tabularnewline
+\hline 
+\hline 
+3 & 6 & 0.0976 & 0.1005 & 0.3443 & 0.3472\tabularnewline
+\hline 
+\hline 
+4 & 12 & 0.0976 & 0.1006 & 0.3441 & 0.3466\tabularnewline
+\hline 
+\hline 
+5 & 13 & 0.0976 & 0.1004 & 0.3390 & 0.3464\tabularnewline
+\hline 
+\end{tabular}\caption{Single section uniform split, mixed polynomial variables.\label{tab:Single-section-uniform-mixed}}
+\end{table}
+
+
+
+\subsubsection{Two sections}
+
+Here, the cycle is split into two sections. Thus the cycle without
+splits would look like Fig \ref{fig:Uiform-split--Two}.
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/uniform_split_2_section}\caption{Uiform split- Two sections\label{fig:Uiform-split--Two}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+The results have been summarised in Table \ref{tab:Uniform-splitting-2-section-ortho}
+for orthonormal variables and in Table \ref{tab:Uniform-splitting-two-sections-mixed}
+for mixed polynomial variable.
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 8 & 0.0668 & 0.0586 & 0.4173 & 0.1650\tabularnewline
+\hline 
+\hline 
+3 & 12 & 0.0645 & 0.0564 & 0.4235 & 0.1685\tabularnewline
+\hline 
+\hline 
+4 & 15 & 0.0674 & 0.0564 & 0.4358 & 0.1777\tabularnewline
+\hline 
+\hline 
+5 & 18 & 0.0685 & 0.0551 & 0.4072 & 0.1686\tabularnewline
+\hline 
+\end{tabular}\caption{Uniform splitting-two sections, orthonormal variables\label{tab:Uniform-splitting-2-section-ortho}}
+
+\par\end{centering}
+
+\end{table}
+
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 9 & 0.0696 & 0.0581 & 0.4444 & 0.1523\tabularnewline
+\hline 
+\hline 
+3 & 9 & 0.0689 & 0.0580 & 0.4405 & 0.1534\tabularnewline
+\hline 
+\hline 
+4 & 13 & 0.0683 & 0.0576 & 0.4382 & 0.1550\tabularnewline
+\hline 
+\hline 
+5 & 13 & 0.0677 & 0.0579 & 0.4287 & 0.1572\tabularnewline
+\hline 
+\end{tabular}\caption{Uniform splitting-two sections, mixed polynomial variables\label{tab:Uniform-splitting-two-sections-mixed}}
+
+\par\end{centering}
+
+\end{table}
+
+
+
+\subsubsection{Three sections}
+
+Here, the cycle is split into three sections. Thus the cycle without
+splits would look like Fig \ref{fig:Uniform-split,-Three} and the
+results have been summarised in Table \ref{tab:Uniform-splitting3-section-ortho}
+for orthonormal polynomial variable and Table \ref{tab:Uniform-splitting-3-section-mixed}
+for mixed polynomial variable.
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/uniform_split_3_section}\caption{Uniform split, Three sections\label{fig:Uniform-split,-Three}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 12 & 0.0448 & 0.0413 & 0.1421 & 0.1679\tabularnewline
+\hline 
+\hline 
+3 & 13 & 0.0480 & 0.0405 & 0.1483 & 0.1436\tabularnewline
+\hline 
+\hline 
+4 & 13 & 0.0495 & 0.0416 & 0.1407 & 0.1336\tabularnewline
+\hline 
+\hline 
+5 & 20 & 0.0522 & 0.0354 & 0.2816 & 0.1209\tabularnewline
+\hline 
+\end{tabular}\caption{Uniform splitting-three sections, orthonormal variables\label{tab:Uniform-splitting3-section-ortho}}
+
+\par\end{centering}
+
+\end{table}
+
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 14 & 0.0431 & 0.0426 & 0.1399 & 0.2375\tabularnewline
+\hline 
+\hline 
+3 & 9 & 0.0427 & 0.0454 & 0.1423 & 0.2728\tabularnewline
+\hline 
+\hline 
+4 & 7 & 0.0427 & 0.0477 & 0.1417 & 0.2746\tabularnewline
+\hline 
+\hline 
+5 & 9 & 0.0420 & 0.0466 & 0.1303 & 0.2706\tabularnewline
+\hline 
+\end{tabular}\caption{Uniform splitting-three sections, orthonormal variables\label{tab:Uniform-splitting-3-section-mixed}}
+
+\par\end{centering}
+
+\end{table}
+
+
+
+\subsubsection{Five sections}
+
+Here, the cycle is split into five sections. Thus the cycle without
+splits would look like Fig \ref{fig:Uniform-splitting-Five-sections}
+and the results have been summarised in Table \ref{tab:Uniform-splits,-Five-ortho}
+for orthonormal variables and Table \ref{tab:Uniform-splits,Five-sections-mix}
+for mixed polynomial variable.
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/uniform_split_5_section}\caption{Uniform splitting-Five sections \label{fig:Uniform-splitting-Five-sections}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 20 & 0.0561 & 0.0285 & 0.4086 & 0.0835\tabularnewline
+\hline 
+\hline 
+3 & 10 & 0.0647 & 0.0357 & 0.6190 & 0.1278\tabularnewline
+\hline 
+\hline 
+4 & 10 & 0.0647 & 0.0357 & 0.6190 & 0.1278\tabularnewline
+\hline 
+\hline 
+5 & 2 & 0.1156 & 0.0341 & 0.8198 & 0.2196\tabularnewline
+\hline 
+\end{tabular}\caption{Uniform splits, Five sections-Orthonormal variable polynomial \label{tab:Uniform-splits,-Five-ortho}}
+
+\par\end{centering}
+
+\end{table}
+
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 11 & 0.0850 & 0.0315 & 0.8171 & 0.0984\tabularnewline
+\hline 
+\hline 
+3 & 11 & 0.0881 & 0.0315 & 0.8564 & 0.0986\tabularnewline
+\hline 
+\hline 
+4 & 14 & 0.0931 & 0.0316 & 0.9168 & 0.1009\tabularnewline
+\hline 
+\hline 
+5 & 5 & 0.0977 & 0.0383 & 0.8786 & 0.1595\tabularnewline
+\hline 
+\end{tabular}\caption{Uniform splits,Five sections-mixed polynomial variable \label{tab:Uniform-splits,Five-sections-mix}}
+
+\par\end{centering}
+
+\end{table}
+
+
+
+\subsubsection{Six sections}
+
+Here, the cycle is split into six sections. Thus the cycle without
+splits would look like Fig \ref{fig:Uniform-splitting-Six-sections}
+and the results have been summarised in Table \ref{tab:Uniform-splits,Six-sections-Orth}
+for orthonormal variables and Table \ref{tab:Uniform-splits,Six-sections-mix}
+for mixed polynomial variable.
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/uniform_split_6_section}\caption{Uniform splitting-Six sections \label{fig:Uniform-splitting-Six-sections}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 23 & 0.0367 & 0.0226 & 0.2078 & 0.0797\tabularnewline
+\hline 
+\hline 
+3 & 34 & 0.0409 & 0.0207 & 0.2424 & 0.0728\tabularnewline
+\hline 
+\hline 
+4 & 44 & 0.0397 & 0.0200 & 0.2355 & 0.0750\tabularnewline
+\hline 
+\hline 
+5 & 28 & 0.0502 & 0.0242 & 0.3099 & 0.0731\tabularnewline
+\hline 
+\end{tabular}\caption{Uniform splits,Six sections-Orthonormal variables \label{tab:Uniform-splits,Six-sections-Orth}}
+
+\par\end{centering}
+
+\end{table}
+
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|>{\centering}p{1.5cm}|}
+\hline 
+Degree & Degree of Freedom & RMSE for test set ($\mu m$) & RMSE for training set($\mu m$) & Maximum error for test set($\mu m$) & Maximum error for training set($\mu m$)\tabularnewline
+\hline 
+\hline 
+2 & 75 & 0.0382 & 0.0215 & 0.1901 & 0.0855\tabularnewline
+\hline 
+\hline 
+3 & 11 & 0.0395 & 0.0279 & 0.1959 & 0.0914\tabularnewline
+\hline 
+\hline 
+4 & 13 & 0.0383 & 0.0265 & 0.1980 & 0.0902\tabularnewline
+\hline 
+\hline 
+5 & 17 & 0.0373 & 0.0256 & 0.1973 & 0.0960\tabularnewline
+\hline 
+\end{tabular}\caption{Uniform splits,Six sections - mixed polynomial variable \label{tab:Uniform-splits,Six-sections-mix}}
+
+\par\end{centering}
+
+\end{table}
+
+
+
+\subsubsection{\label{sub:Discussion-uniform splitting}Discussion}
+
+Here we are primarily concerned with the RMSE value of each solution.
+As we can see from the tables:-
+\begin{enumerate}
+\item Usually, the orthonormal and mixed polynomials offer outputs usually
+have more or less similar values of RMSE. However, the time taken
+to implement the 'mixed polynomial variable' method increases much
+more rapidly than the 'orthonormal variables method' as we increase
+the degree and number of splits.
+\item For higher degree orthonormal variables' method, we may get high RMSE
+due to usually just ONE extremely high error value which indicates
+.
+\item For most of the cases, the RMSE remains more or less the same as we
+change the degree keeping other factors constant.
+\item Usually, as we increase the number of splits, the RMSE value keeps
+on dropping until we reach five sections where we see the RMSE shoot
+up after which the RMSE goes back down. Although this may seem to
+be an anomaly in the begining, there is a perfectly reasonable explanation
+for which becomes evident when we have a look at the way the splits
+are made. In all the splits, save for 5 splits, the significant spike
+which occurs in the range of 30-35 seconds is untouched and the entire
+feature falls into one section. However, this is not the case for
+5 splits. The split midway the feature masks the contribution of the
+pattern as a whole. This is not surprising as the quality parameter
+we are measuring (Ra) would depend heavily on the finishing cut of
+the tool which takes place near the end of the cycle.
+\end{enumerate}
+
+\subsection{Feedback Splitting}
+
+As seen in \ref{sub:Cycle-splitting}, in this we first hypothesize
+a split and run our algorithm to obtain a solution. If this solution
+provides significant improvement, we retain the split and move on
+to make further splits. We have two ways to make these succesive splits.
+We could approach this splitting either from start of the cycle (\textbf{Forward
+feedback splitting}) or the end of the cycle (\textbf{Reverse feedback
+splitting}). Here we will show the various cases where we vary the
+direction of splitting, the threshold of relative difference of error
+and type of method used for variable creation (mixed polynomial or
+orthogonal polynomial). The results will be shown as two graphs where
+one will represent the splits in the cycle and the other the trend
+in the RMSE. We will also be showing the final RMSE value that we
+obtain using the method.
+
+
+\subsubsection{Forward feeback splits-Mixed polynomial-5\% relative change of RMSE
+threshold}
+
+\begin{figure}
+\noindent \centering{}\includegraphics[width=14cm,height=8cm]{Images/5_per_fwd_mix_split}\caption{Mixed polynomial forward feedback splits with 5\% threshold for relative
+change in RMSE- Cycle splits \label{fig:Mixed-polynomial-forward-5-splits}}
+\end{figure}
+
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/5_per_fwd_mix_err}\caption{Mixed polynomial forward feedback splits with 5\% threshold for relative
+change in RMSE- RMSE trends \label{fig:Mixed-polynomial-forward-5-err}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+The emergent splits are shown in Fig \ref{fig:Mixed-polynomial-forward-5-splits}
+and the RMSE trend can be seen in Fig \ref{fig:Mixed-polynomial-forward-5-err}.
+The final RMSE value was $0.0332\mu m$.
+
+
+\subsubsection{Forward feedback splits- Orthonormal variables-5\% relative change
+of RMSE threshold}
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/1_per_frwd_ortho_split}\caption{Forward feedback splits-Orthonormal variables-5\% relative change
+of RMSE threshold -Cycle splits \label{fig:Forward-feedback-splits-Orthonor-5-split}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/1_per_frwd_mix_err}\caption{Forward feedback splits-Orthonormal variables-5\% relative change
+of RMSE threshold - RMSE trend \label{fig:Forward-feedback-splits-Orthonor-5-err}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+The emergent splits are shown in Fig \ref{fig:Forward-feedback-splits-Orthonor-5-split}
+and the RMSE trend can be seen in Fig \ref{fig:Forward-feedback-splits-Orthonor-5-err}.
+The final RMSE value is $0.0365\mu m$.
+
+
+\subsubsection{Forward feedback splits- Mixed polynomial-1\% relative change of
+RMSE threshold}
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/1_per_frwd_mix_split}\caption{Mixed polynomial forward feedback splits with 1\% threshold for relative
+change in RMSE- Cycle splits \label{fig:Mixed-polynomial-forward-1-split}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/1_per_frwd_mix_err}\caption{Mixed polynomial forward feedback splits with 1\% threshold for relative
+change in RMSE- RMSE trend \label{fig:Mixed-polynomial-forward-1-err}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+The emergent splits are shown in Fig \ref{fig:Mixed-polynomial-forward-1-split}
+and the RMSE trend can be seen in Fig \ref{fig:Mixed-polynomial-forward-1-err}.
+The final RMSE value is $0.0330\mu m$.
+
+
+\subsubsection{Forward feedback splits- Orthonormal variables-1\% relative change
+of RMSE threshold}
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/1_per_frwd_ortho_split}\caption{Forward feedback splits-Orthonormal variables-1\% relative change
+of RMSE threshold-Cycle splits \label{fig:Forward-feedback-splits-Orthonor-1-split}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/1_per_frwd_ortho_err}\caption{Forward feedback splits-Orthonormal variables-1\% relative change
+of RMSE threshold-RMSE trend \label{fig:Forward-feedback-splits-Orthonor-1-err}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+The emergent splits are shown in Fig \ref{fig:Forward-feedback-splits-Orthonor-1-split}
+and the RMSE trend can be seen in Fig \ref{fig:Forward-feedback-splits-Orthonor-1-err}.
+The final RMSE value is $0.0330\mu m$.
+
+
+\subsubsection{Reverse feeback splits-Mixed polynomial-5\% relative change of RMSE
+threshold}
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/5_per_rev_mix_split}\caption{Mixed polynomial reverse feedback splits with 5\% threshold for relative
+change in RMSE- Cycle splits \label{fig:Mixed-polynomial-reverse-5-split}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/5_per_rev_mix_err}\caption{Mixed polynomial reverse feedback splits with 5\% threshold for relative
+change in RMSE- RMSE trend \label{fig:Mixed-polynomial-reverse-5-err}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+The emergent splits are shown in Fig \ref{fig:Forward-feedback-splits-Orthonor-1-split}
+and the RMSE trend can be seen in Fig \ref{fig:Forward-feedback-splits-Orthonor-1-err}.
+The final RMSE value is $0.0332\mu m$.
+
+
+\subsubsection{Reverse feeback splits-Orthonormal variable-5\% relative change of
+RMSE threshold}
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/5_per_rev_ortho_split}\caption{Reverse feedback splits-Orthonormal variables-5\% relative change
+of RMSE threshold - Cycle splits \label{fig:Reverse-feedback-splits-Orthonor-5-split}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[width=14cm,height=8cm]{Images/5_per_rev_ortho_err}\caption{Reverse feedback splits-Orthonormal variables-5\% relative change
+of RMSE threshold - RMSE trend \label{fig:Reverse-feedback-splits-Orthonor-5-err}}
+
+\par\end{centering}
+
+\end{figure}
+
+
+The emergent splits are shown in Fig \ref{fig:Reverse-feedback-splits-Orthonor-5-split}
+and the RMSE trend can be seen in Fig \ref{fig:Reverse-feedback-splits-Orthonor-5-err}.
+The final RMSE value is $0.0299\mu m$.
+
+
+\subsubsection{Reverse feedback splits- Mixed polynomial-1\% relative change of
+RMSE threshold}
+
+\begin{figure}
+\noindent \centering{}\includegraphics[width=14cm,height=8cm]{Images/1_per_rev_mix_split}\caption{Mixed polynomial reverse feedback splits with 1\% threshold for relative
+change in RMSE- Cycle splits \label{fig:Mixed-polynomial-reverse-1-splits}}
+\end{figure}
+
+
+\begin{figure}
+\noindent \centering{}\includegraphics[width=14cm,height=8cm]{Images/1_per_rev_mix_err}\caption{Mixed polynomial reverse feedback splits with 1\% threshold for relative
+change in RMSE- RMSE trend \label{fig:Mixed-polynomial-reverse-1-err}}
+\end{figure}
+
+
+The emergent splits are shown in Fig \ref{fig:Mixed-polynomial-reverse-1-splits}
+and the RMSE trend can be seen in Fig \ref{fig:Mixed-polynomial-reverse-1-err}.
+The final RMSE value is $0.0334\mu m$.
+
+
+\subsubsection{Reverse feedback splits- Orthonormal variable-1\% relative change
+of RMSE threshold}
+
+\begin{figure}
+\noindent \centering{}\includegraphics[width=14cm,height=8cm]{Images/1_per_rev_ortho_split}\caption{Reverse feedback splits-Orthonormal variables-1\% relative change
+of RMSE threshold- Cyclse splits \label{fig:Reverse-feedback-splits-Orthonor-1-split}}
+\end{figure}
+
+
+\begin{figure}
+\noindent \centering{}\includegraphics[width=14cm,height=8cm]{Images/1_per_rev_ortho_err}\caption{Reverse feedback splits-Orthonormal variables-1\% relative change
+of RMSE threshold- RMSE trend \label{fig:Reverse-feedback-splits-Orthonor-1-err}}
+\end{figure}
+
+
+The emergent splits are shown in Fig \ref{fig:Reverse-feedback-splits-Orthonor-1-split}
+and the RMSE trend can be seen in Fig \ref{fig:Reverse-feedback-splits-Orthonor-1-err}.
+The final RMSE value is $0.0299\mu m$.
+
+
+\subsubsection{Discussion }
+
+As we can see from the results above, there isn't a lot of variation
+in the final RMSE value which we find using various combinations of
+split direction, threshold and variable type. They more or less fall
+around $0.03\mu m$. However, there are certain other aspects that
+interesting. 
+\begin{enumerate}
+\item Firstly, as mentioned before, when performing cuts from the start
+of the cycle, we tend to get more and closer cuts near the start and
+lesser towards the end and the the other way around when we start
+splitting from the end of the cycle.
+\item Another important thing that we notice is that we get lesser number
+of splits when we split from the end of the cycle. This indicates
+that we can get better correlation by sampling the end of the cycle.
+This inference as mentioned in Section \ref{sub:Discussion-uniform splitting}
+is not surprising as the finishing operation is done near the end
+of the cycle.
+\item As we can see in all the split figures, the significant pattern in
+30-35 seconds is considered as section in all of them. In fact, in
+reverse splits, better splitting in this region is the reason why
+we approach the minimum error region with lesser number of overall
+splits.
+\end{enumerate}
+
+\subsection{Incremental calculation}
+
+As we would expect while running the algorithm for manually drawn
+cuts (ref Section \ref{sub:Cycle-splitting}), the final RMSE values
+are more or less the same. However, we tried incremental sectionwise
+calculation here. In this, we first include only the first section
+as input and find a solution and store the resultant RMSE. Then we
+take the first two sections and find a solution ad store the RMSE.
+We keep on including subsequent sections and find the correspond RMSE's.
+This way we can try to find out the quality of a product before the
+part has been finished making. The future applications of such a capability
+are immense. Especially for parts which take a lot of time to be machined.
+
+The splits we used for this have been chosen manually as in Fig \ref{fig:Manual-Chosen-splits}. 
+
+\begin{figure}
+\noindent \centering{}\includegraphics[width=14cm,height=8cm]{Images/manual_split}\caption{Manually Chosen splits \label{fig:Manual-Chosen-splits}}
+\end{figure}
+
+
+As evident from all the previous examples, we don't find significant
+variation in the results after using either mixed polynomials or orthogonal
+polynomials as our variables. So here we only present the \emph{mixed
+polynomial variable }scenario. Also, this scenario will help us in
+finding out which sections contribute more to the equation.
+
+In Table \ref{tab:RMSE-values-incremental} we show the RMSE values
+we get after using various number of sections from the splits as shown
+in Fig \ref{fig:Manual-Chosen-splits} for each degree of the polynomial
+variable (mixed polynomial variable). Interestingly we come very close
+to to the final RMSE value in the 7th section which ends about 13s
+before the end of our cycle (cycle time is 33 sec).
+
+\begin{table}
+\noindent \centering{}%
+\begin{tabular}{|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|}
+\hline 
+\multicolumn{1}{|>{\centering}p{1cm}|}{} & After 1 section & After 2 sections & After 3 sections & After 4 sections & After 5 sections & After 6 sections & After 7 sections & After 8 sections & After 9 sections & After 10 sections\tabularnewline
+\hline 
+\hline 
+Degree 2 polynomial & 0.1126 & 0.1125 & 0.0947 & 0.0668 & 0.0608 & 0.0542 & 0.0332 & 0.0329 & 0.0329 & 0.0321\tabularnewline
+\hline 
+Degree 3 polynomial & 0.1132 & 0.1120 & 0.0902 & 0.0665 & 0.0603 & 0.0570 & 0.0338 & 0.0315 & 0.0318 & 0.0317\tabularnewline
+\hline 
+Degree 4 polynomial & 0.1264 & 0.1274 & 0.0901 & 0.0678 & 0.0606 & 0.0563 & 0.0329 & 0.0304 & 0.0282 & 0.0301\tabularnewline
+\hline 
+Degree 5 polynomial & 0.1251 & 2.1440 & 0.0942 & 0.0661 & 0.0600 & 0.0533 & 0.0320 & 0.0291 & 0.0285 & 0.0283\tabularnewline
+\hline 
+\end{tabular}\caption{RMSE values (in $\mu m$) for Incremental error calculation \label{tab:RMSE-values-incremental}}
+\end{table}
+
+
+\begin{table}
+\noindent \begin{centering}
+\begin{tabular}{|>{\centering}p{2cm}|>{\centering}p{2cm}|>{\centering}p{2cm}|}
+\hline 
+Minimum value of variable & Value of coefficient & Maximum value of variable\tabularnewline
+\hline 
+\hline 
+1.00E-15 & 3.08E+15 & 1.00E-15\tabularnewline
+\hline 
+4.78E-03 & 4.81E-09 & 1.62E+03\tabularnewline
+\hline 
+1.96E-09 & 4.16E-04 & 2.81E-04\tabularnewline
+\hline 
+7.01E-06 & 6.26E-04 & 1.72E-01\tabularnewline
+\hline 
+5.72E-04 & 1.10E-03 & 2.90E+01\tabularnewline
+\hline 
+1.30E+02 & 1.93E-04 & 3.37E+02\tabularnewline
+\hline 
+3.65E-12 & 6.87E-05 & 4.43E-12\tabularnewline
+\hline 
+2.05E+02 & 6.74E-08 & 7.01E+02\tabularnewline
+\hline 
+1.31E+02 & 1.02E-03 & 3.11E+02\tabularnewline
+\hline 
+9.70E+02 & 9.51E-05 & 4.54E+03\tabularnewline
+\hline 
+1.90E+02 & 1.21E-04 & 7.02E+02\tabularnewline
+\hline 
+1.33E+02 & 2.43E-03 & 2.90E+02\tabularnewline
+\hline 
+1.77E+02 & 7.68E-09 & 7.03E+02\tabularnewline
+\hline 
+1.04E-09 & -1.81E+10 & 1.58E-08\tabularnewline
+\hline 
+3.91E-06 & -7.74E+05 & 6.12E-05\tabularnewline
+\hline 
+1.47E-02 & -1.45E+02 & 2.37E-01\tabularnewline
+\hline 
+5.53E+01 & -3.07E-02 & 9.20E+02\tabularnewline
+\hline 
+4.45E-12 & -6.99E-06 & 5.40E-12\tabularnewline
+\hline 
+4.50E+01 & -2.31E-03 & 9.93E+01\tabularnewline
+\hline 
+8.42E-03 & -7.55E-04 & 2.02E-02\tabularnewline
+\hline 
+3.23E+01 & -3.00E-06 & 7.83E+01\tabularnewline
+\hline 
+1.10E+02 & -8.88E-05 & 2.96E+03\tabularnewline
+\hline 
+1.48E+01 & -5.65E-04 & 8.07E+01\tabularnewline
+\hline 
+2.01E+01 & -1.10E-04 & 5.77E+02\tabularnewline
+\hline 
+1.05E+02 & -1.72E-05 & 7.06E+02\tabularnewline
+\hline 
+2.59E-09 & 7.60E-06 & 5.86E-09\tabularnewline
+\hline 
+8.88E-05 & 2.24E-02 & 2.15E-04\tabularnewline
+\hline 
+1.08E-05 & 5.80E-06 & 2.40E-05\tabularnewline
+\hline 
+1.09E-05 & 5.62E-09 & 2.36E-05\tabularnewline
+\hline 
+2.62E-08 & 1.09E-05 & 5.20E-08\tabularnewline
+\hline 
+2.23E-08 & -2.28E-01 & 5.07E-07\tabularnewline
+\hline 
+5.51E+01 & -3.50E-06 & 1.87E+04\tabularnewline
+\hline 
+7.52E+02 & -1.26E-05 & 4.35E+03\tabularnewline
+\hline 
+1.70E-05 & 2.78E-04 & 3.79E-04\tabularnewline
+\hline 
+4.60E+01 & -5.29E-04 & 1.00E+02\tabularnewline
+\hline 
+3.57E+01 & -2.49E-03 & 7.77E+01\tabularnewline
+\hline 
+5.53E-06 & 2.93E-06 & 1.12E-05\tabularnewline
+\hline 
+\end{tabular}
+\par\end{centering}
+
+\caption{Table of coefficients for Incremental error calculation \label{tab:Table-of-coefficients}}
+\end{table}
+
+
+Table \ref{tab:Table-of-coefficients} shows a particular solutions'
+(Degree 5 polynomial with 10 sections) statistics. The middle column
+shows the list of coefficients in the equation we get. Columns 1 and
+3 show the minimum and maximum value of the variables that we get
+using the test set for that corresponding variable. When we look at
+the coefficients we find that the 14th coefficient is the highest.
+Infact the order of magnitude of the product of fourteenth variable
+with it's corresponding coefficient is the highest too. Thus, clearly,
+these variables can be told to be the most important variables. If
+we denote this variable as $x_{imp},$ it turns out that this variable
+is given as;
+\[
+x_{imp}=sd(sec_{9})*sd(sec_{10})
+\]
+
+
+where $sd()$ is the standard deviation function and $sec_{x}$ denotes
+section number $x$. Thus we again see that the end of the cycle is
+the region which gives us the most important information.
 
 \appendix
 
