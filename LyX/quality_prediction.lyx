@@ -6,11 +6,10 @@
 \begin_preamble
 % specify here the journal
 \journal{}
-
 % use this if you need line numbers
 %\usepackage{lineno}
 \end_preamble
-\use_default_options false
+\use_default_options true
 \begin_modules
 theorems-std
 \end_modules
@@ -43,7 +42,7 @@ theorems-std
 \use_esint 1
 \use_mhchem 1
 \use_mathdots 1
-\cite_engine natbib_authoryear
+\cite_engine natbib_numerical
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -59,8 +58,8 @@ theorems-std
 \defskip smallskip
 \quotes_language english
 \papercolumns 1
-\papersides 2
-\paperpagestyle headings
+\papersides 1
+\paperpagestyle default
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -147,155 +146,16 @@ tnoteref
 \end_layout
 
 \begin_layout Author
-C.V.
-\begin_inset space ~
-\end_inset
-
-Radhakrishnan
-\begin_inset Flex Authormark
-status collapsed
-
-\begin_layout Plain Layout
-fn1
-\end_layout
-
-\end_inset
-
-
-\begin_inset Flex CorAuthormark
-status open
-
-\begin_layout Plain Layout
-cor1
-\end_layout
-
-\end_inset
-
-
-\begin_inset Flex CorAuthormark
-status collapsed
-
-\begin_layout Plain Layout
-cor2
-\end_layout
-
-\end_inset
-
-
-\begin_inset Argument
-status open
-
-\begin_layout Plain Layout
-rvt
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-The short title is the reference of the address.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Email
-cvr@river-valley.com
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-At least one Email address is required.
-\end_layout
-
-\end_inset
-
-
+Vinit S.
+ Unni
 \end_layout
 
 \begin_layout Author
-K.
-\begin_inset space ~
-\end_inset
-
-Bazargan
-\begin_inset Flex Authormark
-status open
-
-\begin_layout Plain Layout
-fn2
+Alex Joseph
 \end_layout
 
-\end_inset
-
-
-\begin_inset Argument
-status open
-
-\begin_layout Plain Layout
-rvt,focal
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-
-\size normal
-With 
-\series bold
-\size default
-
-\backslash
-fnref
-\series default
-\size normal
- and you refer to the author footnotes.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Email
-http://www.elsevier.com
-\begin_inset Argument
-status open
-
-\begin_layout Plain Layout
-url
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-When the short title is 
-\begin_inset Quotes eld
-\end_inset
-
-url
-\begin_inset Quotes erd
-\end_inset
-
-, the email becomes an Internet address.
-\end_layout
-
-\end_inset
-
-
+\begin_layout Author
+Athulan Vijayraghavan
 \end_layout
 
 \begin_layout Author footnote
@@ -354,99 +214,6 @@ cor2
 
 \end_layout
 
-\begin_layout Address
-River Valley Technologies, SJP Building, Cotton Hills, Trivandrum, Kerala,
- India 695014
-\begin_inset Argument
-status open
-
-\begin_layout Plain Layout
-rvt
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-The short title is the label you refer to in the authors.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Address
-River Valleysfgs Technologies, 9, Browns Court, Kennford, Exeter, United
- Kingdom
-\begin_inset Argument
-status open
-
-\begin_layout Plain Layout
-focal
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-This is an example of the second author style:
-\end_layout
-
-\begin_layout Author
-C.V.
-\begin_inset space ~
-\end_inset
-
-Radhakrishnan
-\end_layout
-
-\begin_layout Email
-cvr@river-valley.com
-\end_layout
-
-\begin_layout Address
-River Valley Technologies, SJP Building, Cotton Hills, Trivandrum, Kerala,
- India 695014
-\end_layout
-
-\begin_layout Author
-K.
-\begin_inset space ~
-\end_inset
-
-Bazargan
-\end_layout
-
-\begin_layout Email
-http://www.elsevier.com
-\begin_inset Argument
-status collapsed
-
-\begin_layout Plain Layout
-url
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Address
-River Valley Technologies, 9, Browns Court, Kennford, Exeter, United Kingdom
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Abstract
 Abstract, should normally be not longer than 200 words.
  All work and no play makes jack a dull boy.
@@ -496,7 +263,7 @@ Abstract, should normally be not longer than 200 words.
 \end_layout
 
 \begin_layout Keywords
-quadruple exiton 
+quality 
 \begin_inset ERT
 status collapsed
 
@@ -509,7 +276,7 @@ sep
 
 \end_inset
 
- polariton 
+ predictive quality 
 \begin_inset ERT
 status collapsed
 
@@ -522,7 +289,7 @@ sep
 
 \end_inset
 
- WGM 
+ blah blah blah 
 \begin_inset ERT
 status collapsed
 
@@ -563,7 +330,7 @@ sep
 
  71.36.+c 
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -656,7 +423,7 @@ d is fit to be deemed a good part or not.
  So what manufacturers end up doing is that they keep an inspection frequency
  for non critical parts where quality checks on these parts are made at
  regular intervals until one sees an anomaly.
- How this anomaly is responded to again depends on what feature we are measuring.
+ How this anomaly is responded to again 
 \end_layout
 
 \begin_layout Standard
@@ -812,8 +579,8 @@ name "fig:Quality-trend"
 \begin_layout Standard
 So we decided to use the trend evident in the first 300 parts for our model
  creation and verification.
- We created a 2 degree polynomial fit for the first three hundred parts
- using 12 readings as our control points.
+ We created a 2 degree polynomial fit (usig least squares approach) for
+ the first three hundred parts using 12 readings as our control points.
 \begin_inset Note Comment
 status open
 
@@ -826,7 +593,7 @@ INSERT FIGURE AND POLYFIT STATS.
  The equation turns out to be 
 \begin_inset Formula 
 \begin{equation}
-y\approx3.35664-0.00324170.x+0.000006684611.x^{2}\label{eq:polyfit_1}
+y=3.35664-0.00324170.x+0.000006684611.x^{2}\label{eq:polyfit_1}
 \end{equation}
 
 \end_inset
@@ -968,7 +735,7 @@ For input of the model we decided to use power readings.
  between energy consumed and material removed.
  Also, it depends very little on parts of the machine which are not responsible
  for cutting (eg.
- housing) and thus we can make our system more flexible for varioua machines.
+ housing) and thus we can make our system more flexible for various machines.
  Also, power readings can be easily obtained using conventional power meters.
 \end_layout
 
@@ -990,7 +757,14 @@ As we plan to make an autonomous correlation model, we need to be able to
 \series bold
 Dynamic Time Warping
 \series default
- (DTW).
+ (DTW) 
+\begin_inset CommandInset citation
+LatexCommand citep*
+key "dtw-cassidy,dtw-gene-seq,dtw-music-springer,dtw-package-journal-paper,dtw-sakoe"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1508,7 +1282,14 @@ Polynomial Regression.
  keep the model complexity to a minimum and thus decided to go forward with
  
 \emph on
-Regularised Polynomial Regression.
+Regularised Polynomial Regression 
+\begin_inset CommandInset citation
+LatexCommand citep*
+key "book-ml-hackers,glmnet-documentation,online-class,regularise-pdf"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1780,8 +1561,17 @@ We create new vectors which are orthonormal to each of the vector of variables
  we have.
  The degree of these orthogonal variables were varied to see which would
  yield reasonable results.
+ We used the R function poly {stats} to find out the orthogonal polynomials
+ for our purpose 
+\begin_inset CommandInset citation
+LatexCommand citep*
+key "poly-ortho-R,wiki-ortho"
+
+\end_inset
+
+.
 \begin_inset Note Comment
-status open
+status collapsed
 
 \begin_layout Plain Layout
 ADD ORTHOGONAL POLYNOMIAL EQUATION IF NEEDED
@@ -1903,7 +1693,14 @@ RMSE
 as a metric to compare between the solutions and pick the solution with
  minimum 
 \emph on
-RMSE.
+RMSE 
+\begin_inset CommandInset citation
+LatexCommand citep*
+key "book-ml-hackers"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -10609,7 +10406,7 @@ status open
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="11">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="1cm">
+<column alignment="center" valignment="top" width="2cm">
 <column alignment="center" valignment="top" width="1cm">
 <column alignment="center" valignment="top" width="1cm">
 <column alignment="center" valignment="top" width="1cm">
@@ -14335,89 +14132,19 @@ where
  the most important information.
 \end_layout
 
-\begin_layout Section
-\start_of_appendix
-Appendix name
-\end_layout
-
 \begin_layout Standard
-Appendix, only when needed.
-\end_layout
-
-\begin_layout Section*
------------------
-\end_layout
-
-\begin_layout Standard
-You can use either BibTeX:
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-The following bibliography styles are allowed: 
-\family sans
-elsarticle-harv
-\family default
-, 
-\family sans
-elsarticle-num-names
-\family default
-, or 
-\family sans
-elsarticle-num
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "../examples/biblioExample"
-options "bibtotoc,elsarticle-harv"
+bibfiles "Bibliography"
+options "elsarticle-num"
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section*
----------------------
-\end_layout
-
-\begin_layout Standard
-\noindent
-Or plain bibliography:
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-1"
-
-\end_inset
-
-Frank Mittelbach and Michel Goossens: 
-\emph on
-The LaTeX Companion Second Edition.
-
-\emph default
- Addison-Wesley, 2004.
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-2"
-
-\end_inset
-
-Scott Pakin.
- The comprehensive LaTeX symbol list, 2005.
 \end_layout
 
 \end_body

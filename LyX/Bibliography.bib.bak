@@ -1,0 +1,102 @@
+% This file was created with JabRef 2.7.
+% Encoding: Cp1252
+
+@BOOK{book-ml-hackers,
+  title = {Machine Learning for Hackers},
+  publisher = {O'Reilly},
+  year = {2012},
+  author = {Drew Conway, John Myles White},
+  owner = {Vinit},
+  timestamp = {2012.07.06}
+}
+
+@ARTICLE{dtw-package-journal-paper,
+  author = {Toni Giorgino},
+  title = {Computing and Visualizing Dynamic Time Warping Alignments in R: The
+	dtw Package},
+  journal = {Journal of Statistical Software},
+  year = {2009},
+  volume = {Volume 31},
+  pages = {24},
+  owner = {Vinit},
+  timestamp = {2012.07.06}
+}
+
+@ARTICLE{dtw-sakoe,
+  author = {Hiroake Sakoe, Seibi Chiba},
+  title = {Dynamic Programming Algorithm Optimization for Spoken Word Recognition},
+  journal = {IEEE ASSP Magazine},
+  year = {1978},
+  volume = {26},
+  pages = {7},
+  owner = {Vinit},
+  timestamp = {2012.07.06}
+}
+
+@BOOK{dtw-music-springer,
+  title = {Information Retrieval for Music and Motion},
+  publisher = {Springer},
+  year = {2007},
+  author = {Müller, Meinard},
+  owner = {Vinit},
+  timestamp = {2012.07.06}
+}
+
+@OTHER{online-class,
+  author = {Andrew Ng},
+  owner = {Vinit},
+  timestamp = {2012.07.06},
+  title = {Machine Learning},
+  url = {http://openclassroom.stanford.edu/MainFolder/CoursePage.php?course=MachineLearning}
+}
+
+@OTHER{dtw-gene-seq,
+  author = {Elena Tsiporkova},
+  language = {English},
+  owner = {Vinit},
+  timestamp = {2012.07.06},
+  title = {Dynamic Time Warping Algorithm for Gene Expression Time Series},
+  url = {www.psb.ugent.be/cbd/papers/gentxwarper/DTWAlgorithm.ppt}
+}
+
+@OTHER{regul-pdf,
+  author = {Mats Viberg},
+  owner = {Vinit},
+  timestamp = {2012.07.06},
+  title = {Regularisation in Linear Regression Problems},
+  url = {http://www.signal.uu.se/Research/PCCWIP/Visbyrefs/Viberg_Visby04.pdf}
+}
+
+@OTHER{dtw_cassidy,
+  owner = {Vinit},
+  timestamp = {2012.07.06},
+  title = {Dynamic Time Warping},
+  url = {http://web.science.mq.edu.au/~cassidy/comp449/html/ch11s02.html}
+}
+
+@OTHER{glmnet-documentation,
+  note = {R documentation},
+  owner = {Vinit},
+  timestamp = {2012.07.06},
+  title = {Package 'glmnet'},
+  url = {http://cran.r-project.org/web/packages/glmnet/glmnet.pdf}
+}
+
+@OTHER{poly-ortho-R,
+  note = {R documentation},
+  owner = {Vinit},
+  timestamp = {2012.07.06},
+  title = {Compute Orthogonal Polynomials},
+  url = {http://stat.ethz.ch/R-manual/R-patched/library/stats/html/poly.html}
+}
+
+@comment{jabref-meta: selector_review:}
+
+@comment{jabref-meta: selector_publisher:}
+
+@comment{jabref-meta: selector_author:}
+
+@comment{jabref-meta: selector_journal:}
+
+@comment{jabref-meta: selector_keywords:}
+

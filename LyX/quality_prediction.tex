@@ -1,9 +1,8 @@
 %% LyX 2.0.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
-\documentclass[twoside,english]{elsarticle}
+\documentclass[english]{elsarticle}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
-\pagestyle{headings}
 \setlength{\parskip}{\smallskipamount}
 \setlength{\parindent}{0pt}
 \usepackage{array}
@@ -19,7 +18,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 % specify here the journal
 \journal{}
-
 % use this if you need line numbers
 %\usepackage{lineno}
 
@@ -35,16 +33,13 @@
 \title{Predictive Quality Control}
 
 
-\author[rvt]{C.V.~Radhakrishnan\fnref{fn1}\corref{cor1}\corref{cor2}}
+\author{Vinit S. Unni}
 
 
-\ead{cvr@river-valley.com}
+\author{Alex Joseph}
 
 
-\author[rvt,focal]{K.~Bazargan\fnref{fn2}}
-
-
-\ead[url]{http://www.elsevier.com}
+\author{Athulan Vijayraghavan}
 
 
 \fntext[fn1]{This is the specimen author footnote.}
@@ -57,14 +52,6 @@
 
 
 \cortext[cor2]{Principal corresponding author}
-
-
-\address[rvt]{River Valley Technologies, SJP Building, Cotton Hills, Trivandrum,
-Kerala, India 695014}
-
-
-\address[focal]{River Valleysfgs Technologies, 9, Browns Court, Kennford, Exeter,
-United Kingdom}
 \begin{abstract}
 Abstract, should normally be not longer than 200 words. All work and
 no play makes jack a dull boy. All work and no play makes jack a dull
@@ -96,8 +83,8 @@ jack a dull boy. All work and no play makes jack a dull boy. All work
 and no play makes jack a dull boy. All work and no play makes jack
 a dull boy. \end{abstract}
 \begin{keyword}
-quadruple exiton \sep polariton \sep WGM \PACS 71.35.-y \sep 71.35.Lk
-\sep 71.36.+c \MSC[2008]23-557
+quality \sep predictive quality \sep blah blah blah \PACS 71.35.-y
+\sep 71.35.Lk \sep 71.36.+c \MSC[2008]23-557
 \end{keyword}
 \maketitle
 
@@ -118,8 +105,7 @@ explicitly used over the part(s) to see the results. This usually
 calls for extra man-power and reduced throughput. So what manufacturers
 end up doing is that they keep an inspection frequency for non critical
 parts where quality checks on these parts are made at regular intervals
-until one sees an anomaly. How this anomaly is responded to again
-depends on what feature we are measuring.
+until one sees an anomaly. How this anomaly is responded to again 
 
 The main problem with such a way of measurement is that :-
 \begin{enumerate}
@@ -192,14 +178,14 @@ Insert graph. Metion new tool.
 
 So we decided to use the trend evident in the first 300 parts for
 our model creation and verification. We created a 2 degree polynomial
-fit for the first three hundred parts using 12 readings as our control
-points.%
+fit (usig least squares approach) for the first three hundred parts
+using 12 readings as our control points.%
 \begin{comment}
 INSERT FIGURE AND POLYFIT STATS.
 \end{comment}
 {} The equation turns out to be 
 \begin{equation}
-y\approx3.35664-0.00324170.x+0.000006684611.x^{2}\label{eq:polyfit_1}
+y=3.35664-0.00324170.x+0.000006684611.x^{2}\label{eq:polyfit_1}
 \end{equation}
 
 
@@ -232,7 +218,7 @@ For input of the model we decided to use power readings. We decided
 to go with power readings as one would expect a direct correlation
 between energy consumed and material removed. Also, it depends very
 little on parts of the machine which are not responsible for cutting
-(eg. housing) and thus we can make our system more flexible for varioua
+(eg. housing) and thus we can make our system more flexible for various
 machines. Also, power readings can be easily obtained using conventional
 power meters.
 
@@ -247,7 +233,7 @@ the power readings we get as a stream of data and in it look for recognisable
 patterns which would indicate whether and where a cycle occurred.
 So to start, we need a known producing cycle which we can use as a
 template for comparisons. Once we decide this template we use an algorithm
-called \textbf{Dynamic Time Warping} (DTW).
+called \textbf{Dynamic Time Warping} (DTW) \citep*{dtw-cassidy,dtw-gene-seq,dtw-music-springer,dtw-package-journal-paper,dtw-sakoe}.
 
 
 \subsubsection{Dynamic Time Warping}
@@ -426,7 +412,7 @@ relation between our input and output. We decided to try the very
 simple models and thus decided to use \emph{Polynomial Regression.}
 However, as our number of variables were bound to be high, we decided
 to keep the model complexity to a minimum and thus decided to go forward
-with \emph{Regularised Polynomial Regression.}
+with \emph{Regularised Polynomial Regression \citep*{book-ml-hackers,glmnet-documentation,online-class,regularise-pdf}.}
 
 
 \subsubsection{Regularised Regression}
@@ -518,7 +504,9 @@ Linear Regression. }This we do in two ways:-
 \begin{enumerate}
 \item \textbf{Orthogonal polynomials- }We create new vectors which are orthonormal
 to each of the vector of variables we have. The degree of these orthogonal
-variables were varied to see which would yield reasonable results.%
+variables were varied to see which would yield reasonable results.
+We used the R function poly \{stats\} to find out the orthogonal polynomials
+for our purpose \citep*{poly-ortho-R,wiki-ortho}.%
 \begin{comment}
 ADD ORTHOGONAL POLYNOMIAL EQUATION IF NEEDED
 \end{comment}
@@ -568,7 +556,7 @@ these predicted values against our polynomial fit values (from \ref{sub:Getting-
 ) and find out the \emph{root mean square error(RMSE), }where we assume
 that the polynomial fit values are the true values. We use this \emph{RMSE
 }as a metric to compare between the solutions and pick the solution
-with minimum \emph{RMSE. }
+with minimum \emph{RMSE \citep*{book-ml-hackers}. }
 
 
 \section{Results and Conclusion}
@@ -1247,7 +1235,7 @@ before the end of our cycle (cycle time is 33 sec).
 
 \begin{table}
 \noindent \centering{}%
-\begin{tabular}{|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|}
+\begin{tabular}{|>{\centering}p{2cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|>{\centering}p{1cm}|}
 \hline 
 \multicolumn{1}{|>{\centering}p{1cm}|}{} & After 1 section & After 2 sections & After 3 sections & After 4 sections & After 5 sections & After 6 sections & After 7 sections & After 8 sections & After 9 sections & After 10 sections\tabularnewline
 \hline 
@@ -1372,30 +1360,9 @@ where $sd()$ is the standard deviation function and $sec_{x}$ denotes
 section number $x$. Thus we again see that the end of the cycle is
 the region which gives us the most important information.
 
-\appendix
-
-\section{Appendix name}
-
-Appendix, only when needed.
 
 
-\section*{-----------------}
-
-You can use either Bib\TeX{}:
-
-\bibliographystyle{elsarticle-harv}
-\addcontentsline{toc}{section}{\refname}\bibliography{../examples/biblioExample}
-
-
-
-\section*{---------------------}
-
-\noindent Or plain bibliography:
-\begin{thebibliography}{References}
-\bibitem{key-1}Frank Mittelbach and Michel Goossens: \emph{The \LaTeX{}
-Companion Second Edition.} Addison-Wesley, 2004.
-
-\bibitem{key-2}Scott Pakin. The comprehensive \LaTeX{} symbol list,
-2005.\end{thebibliography}
+\bibliographystyle{elsarticle-num}
+\bibliography{Bibliography}
 
 \end{document}
